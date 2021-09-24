@@ -1,0 +1,54 @@
+  253  git clone https://github.com/jenbow/ws4.git
+  254  ls
+  255  mkdir ws4-work
+  256  cd ws4-work/
+  257  mkdir CUSTOMERS PRODUCTS
+  258  head -n 1 ../amazon_reviews_us_Books_v1_02.tsv 
+  259  head -n 1 ../amazon_reviews_us_Books_v1_02.tsv | cut -f 1,9
+  260  head -n 1 ../amazon_reviews_us_Books_v1_02.tsv | cut -f 2,9
+  261  head -n 10 ../amazon_reviews_us_Books_v1_02.tsv | cut -f 2,9
+  262  cut -f 2,9 ../amazon_reviews_us_Books_v1_02.tsv > cust_ids_help_votes.tmp
+  263  grep "^12076615" cust_ids_help_votes.tmp | cut -f 2 | head
+  264  grep "^12076615" cust_ids_help_votes.tmp | cut -f 2 > CUSTOMERS/12076615.txt
+  265  grep "^12703090" cust_ids_help_votes.tmp | cut -f 2 > CUSTOMERS/12703090.txt
+  266  head CUSTOMERS/12703090.txt 
+  267  grep "^12257412" cust_ids_help_votes.tmp | cut -f 2 > CUSTOMERS/12257412.txt
+  268  head CUSTOMERS/12257412.txt 
+  269  cut -f 1 cust_ids_help_votes.tmp | sort -u | wc -l
+  270  wc -l cust_ids_help_votes.tmp 
+  271  cut -f 1 cust_ids_help_votes.tmp | sort | uniq -c | sort -nrk 1| head
+  272  cut -f 1 cust_ids_help_votes.tmp | sort | uniq -c | sort -nrk 1| grep "^ *3 "
+  273  cut -f 1 cust_ids_help_votes.tmp | sort | uniq -c | sort -nrk 1| grep "^ *3 " | head -n 3
+  274  rm CUSTOMERS/*
+  275  grep "^53096581" cust_ids_help_votes.tmp | cut -f 2 > CUSTOMERS/53096581.txt
+  276  head CUSTOMERS/53096581.txt
+  277  grep "^53096520" cust_ids_help_votes.tmp | cut -f 2 > CUSTOMERS/53096520.txt
+  278  grep "^53096461" cust_ids_help_votes.tmp | cut -f 2 > CUSTOMERS/53096461.txt
+  279  head CUSTOMERS/*
+  280  ls
+  281  rm cust_ids_help_votes.tmp 
+  282  head ../amazon_reviews_us_Books_v1_02.tsv 
+  283  head -n 1 ../amazon_reviews_us_Books_v1_02.tsv 
+  284  cut -f 4,9 ../amazon_reviews_us_Books_v1_02.tsv | head -n 1
+  285  cut -f 4,9 ../amazon_reviews_us_Books_v1_02.tsv > prod-and-help.tmp
+  286  cut -f 1 prod-and-help.tmp | sort | uniq -c | sort -nrk 1| grep -m 3 "^ *3 "
+  287  grep "^B0008EH6KA" prod-and-help.tmp | cut -f 2 > PRODUCTS/B0008EH6KA.txt
+  288  grep "^B00086Z1WS" prod-and-help.tmp | cut -f 2 > PRODUCTS/B00086Z1WS.txt
+  289  grep "^B00081GZV4" prod-and-help.tmp | cut -f 2 > PRODUCTS/B00081GZV4.txt
+  290  head PRODUCTS/*
+  291  echo "Customers" > stats.txt
+  292  ls CUSTOMERS/*
+  293  ls CUSTOMERS/* | cut -f 2 -d "/"
+  294  ls CUSTOMERS/* | cut -f 2 -d "/" | cut -f 1 -d "."
+  295  ls CUSTOMERS/* | cut -f 2 -d "/" | cut -f 1 -d "." >> stats.txt 
+  296  head stats.txt 
+  297  echo "" >> stats.txt 
+  298  echo "Prodcuts" >> stats.txt 
+  299  ls PRODUCTS/* | cut -f 2 -d "/" | cut -f 1 -d "." >> stats.txt 
+  300  cat stats.txt 
+  301  nano stats.txt 
+  302  column stats.txt 
+  303  cat stats.txt 
+  304  mv stats.txt stats.tsv
+  305  history | tail -n 50
+  306  history | tail -n 75 > cmds.log
